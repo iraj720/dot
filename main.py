@@ -45,13 +45,14 @@ def plot_transportation_map(X_list):
 
 if __name__ == "__main__":
     N, n = 3, 5
-
     Ck_list = [np.random.rand(n, n) for _ in range(N)]
     p, q = np.random.rand(n), np.random.rand(n)
     p, q = p / np.sum(p), q / np.sum(q)
-
     X_list = decentralized_optimization(Ck_list, p, q)
     
-    for k, Xk in enumerate(X_list):
-        print(f"Agent {k + 1} transportation plan:\n{Xk}")
+    # Show cost matrices and transportation plans
+    for k in range(N):
+        print(f"Agent {k + 1} cost matrix C_k:\n{Ck_list[k]}")
+        print(f"Agent {k + 1} transportation plan X_k:\n{X_list[k]}")
+    
     plot_transportation_map(X_list)
